@@ -7,6 +7,7 @@ class AwHelpPanel extends PolymerElement {
             :host {
                 display: block;
                 position: relative;
+                z-index: 1;
             }
             .background {
                 background-color: var(--help-panel-background-color, rgba(10,10,10,.4));
