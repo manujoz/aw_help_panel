@@ -1,10 +1,13 @@
 interface AwHelpPanel extends HTMLElement {
+	/** Un componente persistente no está disponible para cerrarse por el usuario, tan solo se cerrará a través de javascript con la functión close() */
+	persistant: boolean;
+
 	/**
 	 * @method	close
 	 * 
 	 * Cierra el panel
 	 */
-     close(): void;
+    close(): void;
 
 	/**
 	 * @method open

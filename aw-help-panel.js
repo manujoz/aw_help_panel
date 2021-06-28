@@ -17,7 +17,6 @@ class AwHelpPanel extends PolymerElement {
                 position: fixed;
                 top: 0;
                 width: 100vw;
-                cursor: pointer;
             }
             .container {
                 background-color: white;
@@ -27,9 +26,8 @@ class AwHelpPanel extends PolymerElement {
                 position: fixed;
 	            scrollbar-color: var(--help-panel-scrollbar-color, #bbbbbb) var(--help-panel-scrollbar-background-color, #fafafa);
                 scrollbar-width: thin;
-                right: 0;
+                right: -100%;
                 top: 0;
-                transform: translate(100%,0);
                 width: 400px;
             }
             .container::-webkit-scrollbar {
@@ -63,12 +61,12 @@ class AwHelpPanel extends PolymerElement {
                 opacity: .8;
             }
         </style>
-        <div id="background" class="background" on-click="close"></div>
+        <div id="background" class="background" on-click="_close"></div>
         <div id="container" class="container">
             <slot></slot>
-            <template is="dom-if" if="[[iconClose]]">
+            <template is="dom-if" if="[[!persistant]]">
                 <div class="iconButton">
-                    <iron-icon icon="close" on-click="close"></iron-icon>
+                    <iron-icon icon="close" on-click="_close"></iron-icon>
                 </div>
             </template>
         </div>
@@ -77,7 +75,7 @@ class AwHelpPanel extends PolymerElement {
 
     static get properties() {
         return {
-            iconClose: { type: Boolean },
+            persistant: { type: Boolean },
         }
     }
 
@@ -87,7 +85,7 @@ class AwHelpPanel extends PolymerElement {
     constructor() {
         super();
 
-        this.iconCLose = false;
+        this.persistant = false;
         this.isOpen = false;
     }
 
@@ -112,16 +110,12 @@ class AwHelpPanel extends PolymerElement {
      * @method  close
      */
     close() {
-        if(!this.isOpen) {
-            return;
-        }
-
         Polymer.Fade.out(this.$.background, {
             speed: 400
         });
 
         Polymer.Animate(this.$.container, {
-            transform: `translate(100%,0)`,
+            right: `-100%`,
             boxShadow: `none`
         }, {
             speed: 250
@@ -145,13 +139,24 @@ class AwHelpPanel extends PolymerElement {
         });
 
         Polymer.Animate(this.$.container, {
-            transform: `translate(0,0)`,
+            right: `0`,
             boxShadow: `0 0 5px #777`
         }, {
             speed: 300
         }, () => {
             this.isOpen = true;
         })
+    }
+
+    /**
+     * @method  _close
+     */
+    _close() {
+        if(!this.isOpen || this.persistant) {
+            return;
+        }
+
+        this.close();
     }
 }
 
