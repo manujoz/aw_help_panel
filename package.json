@@ -1,6 +1,6 @@
 {
   "name": "aw_help_panel",
-  "version": "1.0.2",
+  "version": "1.0.7",
 	"description": "Componente que abre un panel complementario a la derecha",
   "main": "aw-help-panel.js",
   "keywords": [
