@@ -20,3 +20,7 @@ declare var AwHelpPanel: {
 	prototype: AwHelpPanel,
 	new(): AwHelpPanel
 }
+
+interface HTMLElementTagNameMap {
+	"aw-help-panel": AwHelpPanel;
+}
