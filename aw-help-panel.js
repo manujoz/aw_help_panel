@@ -75,6 +75,7 @@ class AwHelpPanel extends PolymerElement {
 
     static get properties() {
         return {
+            /** El elemento será persistente y solo se podrá cerrar llamando a la función close() */
             persistant: { type: Boolean },
         }
     }
