@@ -1,5 +1,15 @@
 import { PolymerElement, html, Polymer } from "../aw_polymer_3/polymer/polymer-element.js";
 
+/**
+ * Componente de panel supletorio
+ * 
+ * @cssprop --help-panel-background-color
+ * @cssprop --help-panel-icon-close-color
+ * @cssprop --help-panel-scrollbar-background-color
+ * @cssprop --help-panel-scrollbar-color
+ * @cssprop --help-panel-scrollbar-color-hover
+ * @cssprop --help-panel-scrollbar-width
+ */
 class AwHelpPanel extends PolymerElement {
     static get template() {
         return html`
@@ -53,7 +63,7 @@ class AwHelpPanel extends PolymerElement {
             .iconButton iron-icon {
                 width: 26px;
                 height: 26px;
-                fill: var(--help-panel-scrollbar-icon-close-color, #333);
+                fill: var(--help-panel-icon-close-color, #333);
                 cursor: pointer;
                 transition: opacity .3s;
             }
